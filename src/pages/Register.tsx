@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from '../store/hook'; 
 import { registerUser, type RegisterUser } from '../features/register/registerSlice';
 import { v4 as uuidv4 } from 'uuid';
+import   {useAppDispatch} from '../store/hook'
 
 const Register: React.FC = () => {
   const dispatch = useAppDispatch(); 
+
+
 
   const [formData, setFormData] = useState<Omit<RegisterUser, 'id'>>({
     name: '',
