@@ -1,6 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-// User type definition
 export interface RegisterUser {
   id: string;
   name: string;
@@ -10,17 +9,15 @@ export interface RegisterUser {
   cellNumber: string;
 }
 
-// Initial state type
 interface RegisterState {
   users: RegisterUser[];
 }
 
-// Initial state
+
 const initialState: RegisterState = {
   users: [],
 };
 
-// Slice definition
 const registerSlice = createSlice({
   name: 'register',
   initialState,
