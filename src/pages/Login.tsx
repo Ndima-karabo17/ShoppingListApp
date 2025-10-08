@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate(); // ✅ React Router hook
+  const navigate = useNavigate(); 
   const { loading, error } = useAppSelector(state => state.login);
 
   const [loginData, setLoginData] = useState({
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         dispatch(loginSuccess(users[0]));
         alert('Logged in successfully');
 
-        // ✅ Redirect to /catelog after login
+        // Redirect to /catelog after login
         navigate('/catelog');
       } else {
         dispatch(loginFailure('Invalid email or password'));
@@ -123,3 +123,4 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+
