@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hook';
-
 import {
   loginStart,
   loginSuccess,
   loginFailure,
 } from '../features/login/loginSlice';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,67 +24,94 @@ const Login: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     dispatch(loginStart());
 
+    try {
+      const response = await fetch(
+        `http://localhost:5000/users?email=${encodeURIComponent(loginData.email)}&password=${encodeURIComponent(loginData.password)}`
+      );
+      const users = await response.json();
 
-    const { email, password } = loginData;
-    if (email === 'ndima@com' && password === 'ndima') {
-      dispatch(loginSuccess({ email }));
-      alert('Logged in successfully');
-    } else {
-      dispatch(loginFailure('Invalid email or password'));
+      if (users.length === 1) {
+        dispatch(loginSuccess(users[0]));
+        alert('Logged in successfully');
+      } else {
+        dispatch(loginFailure('Invalid email or password'));
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      dispatch(loginFailure('An error occurred during login'));
     }
   };
 
   return (
-     <div className=' max-h-200'>
-    <div className='h-182 text-black ml-120'>
-      <h2 className='text-3xl font-mono '>Login to do Shopping List</h2><br />
-      <p className='text-xl font-serif text-zinc-400'>Logging in ensures your catalog is saved securely <br />so you never have to start from scratch</p>
-      <form onSubmit={handleSubmit} className='mt-30'>
-        <div className='mt-5'>
-          <label htmlFor="email" className='text-black'>Email Address:</label><br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className='bg-white w-100 h-10 rounded-xl border-1 text-black'
-            value={loginData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='mt-5'>
-          <label htmlFor="password" className='text-black'>Password:</label><br />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            className='bg-white w-100 h-10 rounded-xl border-1 text-black'
-            
-            value={loginData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <div className='mt-10 flex gap-5'>
-            <br />
-          <div>
-            <button type="submit" disabled={loading} className='border-1 hover:border-amber-100 text-xl rounded-xl w-27 h-10'>
-            {loading ? 'Logging in...' : 'LOGIN'}
-          </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
+        <h2 className="text-2xl sm:text-3xl font-mono mb-4 text-center">
+          Login to Your Shopping List
+        </h2>
+        <p className="text-base sm:text-lg text-center text-zinc-500 mb-6">
+          Logging in ensures your catalog is saved securely<br />
+          so you never have to start from scratch.
+        </p>
+
+        <form onSubmit={handleSubmit}>
+          {/* Email */}
+          <div className="mb-5">
+            <label htmlFor="email" className="block text-gray-700 font-medium mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={loginData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
           </div>
-          <div>
-            <p className='mt-3'> Don’t have account? <Link to='/register' className='hover:text-blue-400'>Register</Link></p>
-            
+
+          {/* Password */}
+          <div className="mb-5">
+            <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={loginData.password}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
           </div>
-        </div>
-      </form>
-    </div>
+
+          {/* Error Message */}
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+
+          {/* Submit Button */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full sm:w-auto px-6 py-2 bg-teal-500 hover:bg-teal-400 text-white rounded-md text-lg font-semibold"
+            >
+              {loading ? 'Logging in...' : 'LOGIN'}
+            </button>
+
+            <p className="text-sm text-center sm:text-left">
+              Don’t have an account?{' '}
+              <Link to="/register" className="text-blue-500 hover:underline">
+                Register
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
