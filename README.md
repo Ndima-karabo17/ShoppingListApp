@@ -79,9 +79,21 @@ WHAT IS NEEDED?
 
 How it looks like...
 
-Landing page
+Landing Page
+-
 <img width="1900" height="900" alt="home overview" src="https://github.com/user-attachments/assets/6b1113b4-2ce6-4b61-8486-df51abf9ccc8" />
-<img width="1900" height="900" alt="Screenshot 2025-10-08 152323" src="https://github.com/user-attachments/assets/a75d3903-63b1-4d51-9cf3-ba8d04d30801" />
-<img width="1900" height="900" alt="Screenshot 2025-10-08 152522" src="https://github.com/user-attachments/assets/021422fa-ccb7-471e-bf67-4ead592a0b14" />
+<img width="1900" height="900" alt="Home header" src="https://github.com/user-attachments/assets/a75d3903-63b1-4d51-9cf3-ba8d04d30801" />
+<img width="1900" height="900" alt="Home footer" src="https://github.com/user-attachments/assets/021422fa-ccb7-471e-bf67-4ead592a0b14" />
 
+Register Page
+-
+<img width="1900" height="900" alt="Register overview" src="https://github.com/user-attachments/assets/33ac465a-98f4-48e8-967f-7090a767aa87" />
 
+Login Page
+-
+<img width="1900" height="900" alt="Login overview" src="https://github.com/user-attachments/assets/6bfc3443-bb0c-4557-8110-c00f26ac4952" />
+
+Catelog Page
+-
+<img width="1900" height="900" alt="Catelog overview" src="https://github.com/user-attachments/assets/6ce24aa6-e5f1-4ec7-acc3-3124fc43bc30" />
+<img width="1900" height="900" alt="Catelog when clicked Add icon" src="https://github.com/user-attachments/assets/6c2ec88b-364d-41aa-a852-d1a30c6d689f" />
