@@ -13,13 +13,14 @@ type GroceryItem = {
 const Catelog: React.FC = () => {
   const [items, setItems] = useState<GroceryItem[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [imageFile, setImageFile] = useState<File | null>(null); // store raw File
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
   const [formData, setFormData] = useState<Omit<GroceryItem, 'id'>>({
     name: '',
     quantity: '',
     notes: '',
     category: '',
-    image: null, // base64 string
+    image: null,
   });
 
   useEffect(() => {
@@ -83,113 +84,147 @@ const Catelog: React.FC = () => {
   };
 
   return (
-    <div className='bg-amber-50 p-6 rounded-md max-w-xl mx-auto mt-12'>
+    <div className="bg-amber-50 px-4 py-8 rounded-md max-w-4xl mx-auto">
+      {/* Header */}
       <div>
-        <h2 className='text-3xl font-mono'>Grocery List</h2>
-        <p className='text-xl text-zinc-400 font-serif'>Manage your weekly needs</p>
+        <h2 className="text-2xl sm:text-3xl font-mono">Grocery List</h2>
+        <p className="text-base sm:text-lg text-zinc-500 font-serif">Manage your weekly needs</p>
       </div>
 
-      <div className='mt-6'>
+      {/* Search Bar */}
+      <div className="mt-6">
         <input
-          type='text'
-          className='border rounded-sm w-full p-2'
-          placeholder='Search items...'
+          type="text"
+          className="border rounded-md w-full p-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+          placeholder="Search items..."
         />
 
-        <div className='mt-4'>
-          {items.map((item) => (
-            <div key={item.id} className='bg-white p-3 mb-3 rounded shadow'>
-              <h3 className='font-bold'>{item.name} ({item.quantity})</h3>
-              {item.notes && <p className='text-sm italic'>{item.notes}</p>}
-              {item.category && <p className='text-sm'>Category: {item.category}</p>}
+        {/* Items */}
+        <div className="mt-4">
+          {items.map(item => (
+            <div key={item.id} className="bg-white p-4 mb-3 rounded shadow-sm">
+              <h3 className="font-bold text-lg">{item.name} ({item.quantity})</h3>
+              {item.notes && <p className="text-sm italic text-zinc-600">{item.notes}</p>}
+              {item.category && <p className="text-sm text-zinc-600">Category: {item.category}</p>}
               {item.image && (
                 <img
                   src={item.image}
                   alt={item.name}
-                  className='w-20 mt-2 rounded'
+                  className="w-20 mt-2 rounded border"
                 />
               )}
             </div>
           ))}
         </div>
 
-        <div className='flex justify-end mt-5'>
+        {/* Add Button */}
+        <div className="flex justify-end mt-5">
           <img
             src={addIcon}
-            alt='Add'
-            className='w-10 cursor-pointer'
+            alt="Add"
+            className="w-10 cursor-pointer hover:scale-105 transition"
             onClick={() => setShowForm(true)}
           />
         </div>
       </div>
 
+      {/* Modal Form */}
       {showForm && (
-        <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex justify-center items-center z-50'>
-          <div className='bg-white p-5 rounded-md w-[400px] relative'>
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex justify-center items-center z-50"
+          onClick={() => setShowForm(false)}
+        >
+          <div
+            className="bg-white p-5 rounded-md w-[90%] sm:w-[400px] relative max-h-[90vh] overflow-y-auto"
+            onClick={e => e.stopPropagation()}
+          >
             <button
               onClick={() => setShowForm(false)}
-              className='absolute top-2 right-3 text-red-500 text-xl'
+              className="absolute top-2 right-3 text-red-500 text-xl"
             >
               &times;
             </button>
-            <h3 className='text-xl font-semibold mb-4'>Add New Item</h3>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
-              <label>Item Name:</label>
-              <input
-                type='text'
-                name='name'
-                placeholder='Item Name'
-                value={formData.name}
-                onChange={handleChange}
-                className='border p-2 rounded'
-                required
-              />
-              <label>Quantity:</label>
-              <input
-                type='text'
-                name='quantity'
-                placeholder='Quantity'
-                value={formData.quantity}
-                onChange={handleChange}
-                className='border p-2 rounded'
-                required
-              />
-              <label>Optional Notes:</label>
-              <input
-                type='text'
-                name='notes'
-                placeholder='Optional notes'
-                value={formData.notes}
-                onChange={handleChange}
-                className='border p-2 rounded'
-              />
-              <label>Category:</label>
-              <input
-                type='text'
-                name='category'
-                placeholder='Category'
-                value={formData.category}
-                onChange={handleChange}
-                className='border p-2 rounded'
-              />
-              <label>Item Image:</label>
-              <input
-                type='file'
-                name='image'
-                accept='image/*'
-                onChange={handleChange}
-                className='border p-2 rounded'
-              />
-              {imageFile && (
-                <img
-                  src={URL.createObjectURL(imageFile)}
-                  alt='Preview'
-                  className='w-20 mt-2 rounded'
+            <h3 className="text-xl font-semibold mb-4">Add New Item</h3>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              {/* Item Name */}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium">Item Name:</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="border p-2 rounded w-full"
+                  required
                 />
-              )}
+              </div>
+
+              {/* Quantity */}
+              <div>
+                <label htmlFor="quantity" className="block text-sm font-medium">Quantity:</label>
+                <input
+                  type="text"
+                  id="quantity"
+                  name="quantity"
+                  value={formData.quantity}
+                  onChange={handleChange}
+                  className="border p-2 rounded w-full"
+                  required
+                />
+              </div>
+
+              {/* Notes */}
+              <div>
+                <label htmlFor="notes" className="block text-sm font-medium">Optional Notes:</label>
+                <input
+                  type="text"
+                  id="notes"
+                  name="notes"
+                  value={formData.notes}
+                  onChange={handleChange}
+                  className="border p-2 rounded w-full"
+                />
+              </div>
+
+              {/* Category */}
+              <div>
+                <label htmlFor="category" className="block text-sm font-medium">Category:</label>
+                <input
+                  type="text"
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  className="border p-2 rounded w-full"
+                />
+              </div>
+
+              {/* Image Upload */}
+              <div>
+                <label htmlFor="image" className="block text-sm font-medium">Item Image:</label>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleChange}
+                  className="border p-2 rounded w-full"
+                />
+                {imageFile && (
+                  <img
+                    src={URL.createObjectURL(imageFile)}
+                    alt="Preview"
+                    className="w-20 mt-2 rounded"
+                  />
+                )}
+              </div>
+
+              {/* Submit */}
               <button
-                type='submit'
-                className='bg-green-600 text-white py-2 rounded hover:bg-green-700'
+                type="submit"
+                className="bg-green-600 text-white py-2 mt-2 rounded hover:bg-green-700 transition"
               >
                 Add Item
               </button>
