@@ -77,3 +77,7 @@ WHAT IS NEEDED?
 
 -npm run dev
 
+How it looks like...
+
+Landing page
+<img width="1900" height="900" alt="Screenshot 2025-10-08 152109" src="https://github.com/user-attachments/assets/6b1113b4-2ce6-4b61-8486-df51abf9ccc8" />
