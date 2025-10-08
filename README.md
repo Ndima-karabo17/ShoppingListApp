@@ -53,6 +53,7 @@ React Router handles client-side navigation:
 /catelog — Main grocery catalog (protected view after login).
 
 WHAT IS NEEDED?
+-
 -Make sure you installed Node.js
 -npm install
 -npm install react-icons
@@ -63,4 +64,4 @@ WHAT IS NEEDED?
 -npm install @reduxjs/toolkit
 -npm install react-redux
 -npm run dev
--
+
