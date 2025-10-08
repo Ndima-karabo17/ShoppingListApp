@@ -5,10 +5,11 @@ import {
   loginSuccess,
   loginFailure,
 } from '../features/login/loginSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate(); // ✅ React Router hook
   const { loading, error } = useAppSelector(state => state.login);
 
   const [loginData, setLoginData] = useState({
@@ -30,13 +31,18 @@ const Login: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/users?email=${encodeURIComponent(loginData.email)}&password=${encodeURIComponent(loginData.password)}`
+        `http://localhost:5000/users?email=${encodeURIComponent(
+          loginData.email
+        )}&password=${encodeURIComponent(loginData.password)}`
       );
       const users = await response.json();
 
       if (users.length === 1) {
         dispatch(loginSuccess(users[0]));
         alert('Logged in successfully');
+
+        // ✅ Redirect to /catelog after login
+        navigate('/catelog');
       } else {
         dispatch(loginFailure('Invalid email or password'));
       }
