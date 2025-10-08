@@ -15,7 +15,20 @@ function Home() {
                     <nav>
                         <ul className="flex flex-col sm:flex-row gap-4 sm:gap-10 items-center">
                             <li className="hover:text-neutral-600 cursor-pointer">Home</li>
-                            <li className="hover:text-neutral-600 cursor-pointer">Features</li>
+                            <li className="relative group cursor-pointer">
+                                <span className="hover:text-neutral-600">Features</span>
+                                <ul className="absolute left-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+                                    <li>
+                                        <Link
+                                            to="/catelog"
+                                            className="block px-4 py-2 hover:bg-gray-100 text-sm text-gray-700"
+                                        >
+                                            Catelog
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li>
                                 <Link
                                     to="/login"
@@ -63,8 +76,9 @@ function Home() {
             <footer className="bg-violet-50">
                 <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-center sm:text-left">
-                        &copy; 2025 TindimaICTResources. <span>All rights reserved.</span>
+                        &copy; 2025 TindimaICTResources. <span>All rights reserved.</span> <span><Link to='/privacy' className="hover:text-blue-600">Terms and Privacy</Link></span>
                     </p>
+
                     <Link
                         to="https://www.linkedin.com/in/ndima-mhangwani"
                         target="_blank"
