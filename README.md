@@ -97,3 +97,7 @@ Catelog Page
 -
 <img width="1900" height="900" alt="Catelog overview" src="https://github.com/user-attachments/assets/6ce24aa6-e5f1-4ec7-acc3-3124fc43bc30" />
 <img width="1900" height="900" alt="Catelog when clicked Add icon" src="https://github.com/user-attachments/assets/6c2ec88b-364d-41aa-a852-d1a30c6d689f" />
+
+Privacy Page
+-
+<img width="1900" height="900" alt="Privacy overview" src="https://github.com/user-attachments/assets/a9788eaa-bc3a-44bb-920d-cd9287c392fd" />
