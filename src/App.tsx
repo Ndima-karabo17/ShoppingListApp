@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import Privacy from "./pages/Privacy"
 import Catelog from "./pages/Catelog"
 
+
 function App() {
 
 
@@ -17,7 +18,7 @@ function App() {
     <BrowserRouter>
    
       <Routes>
-    <Route path="/" index ></Route>
+    <Route path="/" index element={<Home/>}></Route>
     <Route path="/register" element={<Register/>}/>
 <Route path="/login" element={<Login/>}/>
 <Route path="/profile" element={<Profile/>}/>
