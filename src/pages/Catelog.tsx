@@ -66,7 +66,7 @@ const Catelog: React.FC = () => {
     e.preventDefault();
     if (!formData.name || !formData.quantity) return;
 
-    let base64Image: string | null = formData.image;
+    let base64Image = formData.image;
 
     if (imageFile) {
       base64Image = await convertToBase64(imageFile);
