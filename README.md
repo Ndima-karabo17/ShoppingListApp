@@ -81,5 +81,5 @@ How it looks like...
 
 Landing page
 <img width="1900" height="900" alt="Screenshot 2025-10-08 152109" src="https://github.com/user-attachments/assets/6b1113b4-2ce6-4b61-8486-df51abf9ccc8" />
-
-<img width="1899" height="938" alt="Screenshot 2025-10-08 152323" src="https://github.com/user-attachments/assets/a75d3903-63b1-4d51-9cf3-ba8d04d30801" />
+<img width="1900" height="900" alt="Screenshot 2025-10-08 152323" src="https://github.com/user-attachments/assets/a75d3903-63b1-4d51-9cf3-ba8d04d30801" />
+<img width="1900" height="900" alt="Screenshot 2025-10-08 152522" src="https://github.com/user-attachments/assets/021422fa-ccb7-471e-bf67-4ead592a0b14" />
