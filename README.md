@@ -48,20 +48,32 @@ React Router handles client-side navigation:
 -
 
 / — Home page with introduction and calls to action.
+
 /register — Register new user.
+
 /login — Login to an existing account.
+
 /catelog — Main grocery catalog (protected view after login).
 
 WHAT IS NEEDED?
 -
 -Make sure you installed Node.js
+
 -npm install
+
 -npm install react-icons
+
 -npm install -g json-server
+
 -json-server db.json --port 5000
+
 -npm install react-router-dom
+
 -npm install tailwindcss @tailwindcss/vite
+
 -npm install @reduxjs/toolkit
+
 -npm install react-redux
+
 -npm run dev
 
