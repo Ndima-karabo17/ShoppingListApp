@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { registerUser, type RegisterUser } from '../features/register/registerSlice';
 import { v4 as uuidv4 } from 'uuid';
-import   {useAppDispatch} from '../store/hook'
-import { Link } from 'react-router';
+import { useAppDispatch } from '../store/hook';
+import { Link } from 'react-router-dom';
+
 const Register: React.FC = () => {
-  const dispatch = useAppDispatch(); 
-
-
+  const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<Omit<RegisterUser, 'id'>>({
     name: '',
@@ -46,59 +45,110 @@ const Register: React.FC = () => {
   };
 
   return (
-    <>
-    <div className='bg-white max-h-200'>
-    <div className='bg-white text-black ml-120 '>
-      <h2 className='text-3xl font-mono'>Let's Create Account</h2>
-      <p className='text-xl font-serif text-zinc-400'>Create an account to easily save and access  <br />your favorite items anytime, from any device.</p>
-      <form onSubmit={handleSubmit} >
-        <div className='mt-10'>
-          <label>Name:</label><br />
-          <input type="text" name="name" value={formData.name} 
-          className='bg-white w-100 h-10 rounded-xl border-1 text-black'
-          onChange={handleChange} required />
-        </div>
-        <div className='mt-5'>
-          <label>Surname:</label><br />
-          <input type="text" name="surname" value={formData.surname} 
-          className='bg-white w-100 h-10 rounded-xl border-1 text-black'
-          onChange={handleChange} required />
-        </div>
-        <div className='mt-5'>
-          <label>Email Address:</label><br />
-          <input type="email" name="email" value={formData.email} 
-          className='bg-white w-100 h-10 rounded-xl border-1 text-black'
-          onChange={handleChange} required />
-        </div>
-        <div className='mt-5'>
-          <label>Cell Number:</label><br />
-          <input type="tel" name="cellNumber" value={formData.cellNumber} 
-          className='bg-white w-100 h-10 rounded-xl border-1 text-black'
-          onChange={handleChange} required />
-        </div>
-        <div className='mt-5'>
-          <label>Password:</label><br />
-          <input type="password" name="password" value={formData.password} 
-          className='bg-white w-100 h-10 rounded-xl border-1 text-black'
-          onChange={handleChange} required />
-        </div>
-        <div>
-             <br />
-          <p>By registering you agree to <Link to='/privacy' className='hover:text-amber-200'>terms and privacy</Link>.</p>
-       
-        </div>
-        <div className='mt-5 flex gap-5'>
-          <div>
-            <button type="submit" className='border-1 hover:border-amber-100 rounded-xl w-27 h-10'>REGISTER</button>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-xl bg-white shadow-lg rounded-lg p-6 sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-mono mb-4 text-center">Let's Create an Account</h2>
+        <p className="text-sm sm:text-base text-zinc-500 mb-6 text-center">
+          Create an account to easily save and access <br />your favorite items anytime, from any device.
+        </p>
+
+        <form onSubmit={handleSubmit}>
+
+          {/* Name */}
+          <div className="mb-4">
+            <label htmlFor="name" className="block font-medium text-gray-700 mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 outline-none"
+            />
           </div>
-          <div>
-            <p className='mt-3'>Already registered? <Link to='/login' className='hover:text-blue-400'>Login</Link></p>
+
+          {/* Surname */}
+          <div className="mb-4">
+            <label htmlFor="surname" className="block font-medium text-gray-700 mb-1">Surname</label>
+            <input
+              type="text"
+              name="surname"
+              id="surname"
+              value={formData.surname}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 outline-none"
+            />
           </div>
-        </div>
-      </form>
+
+          {/* Email */}
+          <div className="mb-4">
+            <label htmlFor="email" className="block font-medium text-gray-700 mb-1">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 outline-none"
+            />
+          </div>
+
+          {/* Cell Number */}
+          <div className="mb-4">
+            <label htmlFor="cellNumber" className="block font-medium text-gray-700 mb-1">Cell Number</label>
+            <input
+              type="tel"
+              name="cellNumber"
+              id="cellNumber"
+              value={formData.cellNumber}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 outline-none"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="mb-4">
+            <label htmlFor="password" className="block font-medium text-gray-700 mb-1">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 outline-none"
+            />
+          </div>
+
+          {/* Terms */}
+          <p className="text-sm text-gray-500 mt-4">
+            By registering, you agree to our&nbsp;
+            <Link to="/privacy" className="text-blue-500 hover:underline">terms and privacy</Link>.
+          </p>
+
+          {/* Buttons */}
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button
+              type="submit"
+              className="w-full sm:w-auto px-6 py-2 bg-teal-500 hover:bg-teal-400 text-white rounded-md text-lg font-semibold"
+            >
+              REGISTER
+            </button>
+
+            <p className="text-sm">
+              Already registered?{' '}
+              <Link to="/login" className="text-blue-500 hover:underline">
+                Login
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-    </>
   );
 };
 
