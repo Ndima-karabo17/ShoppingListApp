@@ -82,7 +82,7 @@ How it looks like...
 Landing Page
 -
 <img width="1900" height="900" alt="home overview" src="https://github.com/user-attachments/assets/6b1113b4-2ce6-4b61-8486-df51abf9ccc8" />
-<img width="1900" height="900" alt="Home header" src="https://github.com/user-attachments/assets/a75d3903-63b1-4d51-9cf3-ba8d04d30801" />
+<img width="1900" height="900" alt="Header overview" src="https://github.com/user-attachments/assets/61a9958e-ec98-4934-8f1d-67beb51b0940" />
 <img width="1900" height="900" alt="Home footer" src="https://github.com/user-attachments/assets/021422fa-ccb7-471e-bf67-4ead592a0b14" />
 
 Register Page
