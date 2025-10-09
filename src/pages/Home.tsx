@@ -17,7 +17,7 @@ function Home() {
                             <li className="hover:text-neutral-600 cursor-pointer">Home</li>
                             <li className="relative group cursor-pointer">
                                 <span className="hover:text-neutral-600">Features</span>
-                                <ul className="absolute left-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+                                <ul className="absolute left-0 mt-2 w-30 bg-white border border-gray-200 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
                                     <li>
                                         <Link
                                             to="/catelog"
@@ -25,6 +25,9 @@ function Home() {
                                         >
                                             Catelog
                                         </Link>
+                                    </li>
+                                    <li>
+                                        <Link to='/profile' className="block px-4 py-2 hover:bg-gray-100 text-sm text-gray-700">Profile</Link>
                                     </li>
                                 </ul>
                             </li>
@@ -80,7 +83,7 @@ function Home() {
                     </p>
 
                     <Link
-                        to="https://www.linkedin.com/in/ndima-mhangwani"
+                        to="https://www.linkedin.com/in/ndima-mhangwani-4761b332a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-600"
