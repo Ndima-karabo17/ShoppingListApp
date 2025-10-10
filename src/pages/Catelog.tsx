@@ -153,7 +153,7 @@ const Catelog: React.FC = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as 'name' | 'category' | '')}
-            className="border p-2 rounded"
+            className="border p-1 rounded"
           >
             <option value="">None</option>
             <option value="name">Name</option>
