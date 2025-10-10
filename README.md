@@ -96,6 +96,8 @@ Login Page
 Catelog Page
 -
 <img width="1900" height="900" alt="Catelog overview" src="https://github.com/user-attachments/assets/6ce24aa6-e5f1-4ec7-acc3-3124fc43bc30" />
+<img width="1900" height="900" alt="Updated catelog with sorting" src="https://github.com/user-attachments/assets/9fd6d67c-4efd-443f-9063-3affa818e0c4" />
+
 <img width="1900" height="900" alt="Catelog when clicked Add icon" src="https://github.com/user-attachments/assets/6c2ec88b-364d-41aa-a852-d1a30c6d689f" />
 
 Privacy Page
