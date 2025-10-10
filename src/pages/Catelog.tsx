@@ -15,6 +15,7 @@ const Catelog: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingItemId, setEditingItemId] = useState<number | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [sortBy, setSortBy] = useState<'name' | 'category' | ''>('');
 
   const [formData, setFormData] = useState<Omit<GroceryItem, 'id'>>({
     name: '',
@@ -25,7 +26,7 @@ const Catelog: React.FC = () => {
   });
 
   useEffect(() => {
-    fetch('http://localhost:5000/items') // Changed to port 5000 (match your submit URL)
+    fetch('http://localhost:5000/items')
       .then(res => res.json())
       .then(data => setItems(data))
       .catch(err => console.error('Error fetching items:', err));
@@ -78,7 +79,6 @@ const Catelog: React.FC = () => {
     };
 
     if (editingItemId !== null) {
-      // Edit Mode
       const response = await fetch(`http://localhost:5000/items/${editingItemId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -90,7 +90,6 @@ const Catelog: React.FC = () => {
         prev.map(item => (item.id === editingItemId ? updatedItem : item))
       );
     } else {
-      // Add New
       const response = await fetch('http://localhost:5000/items', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -127,6 +126,15 @@ const Catelog: React.FC = () => {
     setItems(prev => prev.filter(item => item.id !== id));
   };
 
+  const sortedItems = [...items].sort((a, b) => {
+    if (sortBy === 'name') {
+      return a.name.localeCompare(b.name);
+    } else if (sortBy === 'category') {
+      return (a.category || '').localeCompare(b.category || '');
+    }
+    return 0;
+  });
+
   return (
     <div className="bg-amber-50 px-4 py-8 rounded-md max-w-4xl mx-auto">
       <h2 className="text-2xl sm:text-3xl font-mono">Grocery List</h2>
@@ -139,8 +147,23 @@ const Catelog: React.FC = () => {
           placeholder="Search items..."
         />
 
+        {/* Sort Dropdown */}
+        <div className="mt-4 flex justify-end items-center gap-2">
+          <label className="text-sm font-medium">Sort by:</label>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as 'name' | 'category' | '')}
+            className="border p-2 rounded"
+          >
+            <option value="">None</option>
+            <option value="name">Name</option>
+            <option value="category">Category</option>
+          </select>
+        </div>
+
+        {/* Item List */}
         <div className="mt-4">
-          {items.map(item => (
+          {sortedItems.map(item => (
             <div key={item.id} className="bg-white p-4 mb-3 rounded shadow-sm relative">
               <div className="flex justify-between items-start">
                 <div>
@@ -176,6 +199,7 @@ const Catelog: React.FC = () => {
           ))}
         </div>
 
+        {/* Add Icon */}
         <div className="flex justify-end mt-5">
           <img
             src={addIcon}
@@ -183,7 +207,7 @@ const Catelog: React.FC = () => {
             className="w-10 cursor-pointer hover:scale-105 transition"
             onClick={() => {
               setShowForm(true);
-              setEditingItemId(null); // Reset edit mode
+              setEditingItemId(null);
               setFormData({ name: '', quantity: '', notes: '', category: '', image: null });
               setImageFile(null);
             }}
@@ -191,6 +215,7 @@ const Catelog: React.FC = () => {
         </div>
       </div>
 
+      {/* Form Modal */}
       {showForm && (
         <div
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex justify-center items-center z-50"
