@@ -14,3 +14,7 @@ export interface profileUser{
     itemImage:string;
 
 }
+export interface UserLogin{
+    email: string;
+    password: string;
+}

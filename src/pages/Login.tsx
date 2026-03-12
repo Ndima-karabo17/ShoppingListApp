@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // ✅ React Router hook
   const { loading, error } = useAppSelector(state => state.login);
 
   const [loginData, setLoginData] = useState({
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         dispatch(loginSuccess(users[0]));
         alert('Logged in successfully');
 
-        // Redirect to /catelog after login
+        // ✅ Redirect to /catelog after login
         navigate('/catelog');
       } else {
         dispatch(loginFailure('Invalid email or password'));
@@ -104,11 +104,14 @@ const Login: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full sm:w-auto px-6 py-2 bg-teal-500 hover:bg-teal-400 text-white rounded-md text-lg font-semibold"
+              className="w-full sm:w-auto px-43 py-2 bg-teal-500 hover:bg-teal-400 text-white rounded-md text-lg font-semibold"
             >
               {loading ? 'Logging in...' : 'LOGIN'}
             </button>
 
+            
+          </div>
+          <div>
             <p className="text-sm text-center sm:text-left">
               Don’t have an account?{' '}
               <Link to="/register" className="text-blue-500 hover:underline">
@@ -123,4 +126,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
